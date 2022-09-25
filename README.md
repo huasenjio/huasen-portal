@@ -43,4 +43,4 @@
 ## 在线体验
 
 1. 线上运营网站：[花森主页](http://n.huasen.cc/)（可能迭代版本不同）
-2. 仓库源码示例：[Github 托管版本](https://huasenjio.github.io/huasen-example/portal/index.html)（部分外链图片无法显示）
+2. 仓库源码示例：[Github 托管版本](https://huasenjio.github.io/huasen-portal/dist/index.html)（部分外链图片无法显示）
