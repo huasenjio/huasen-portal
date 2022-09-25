@@ -101,10 +101,8 @@ export default {
 
 <style lang="scss" scoped>
 .h-area {
-  position: relative;
   width: 100%;
   height: 100%;
-  display: flex;
   ::v-deep .area-content {
     width: calc(100% - 150px);
     height: 100%;
@@ -114,13 +112,11 @@ export default {
       font-family: Roboto, 'Courier New', Consolas, Inconsolata, Courier, monospace;
       margin: auto 5px;
     }
-
     code {
       white-space: pre-wrap;
       border-radius: 2px;
       display: inline;
     }
-
     pre {
       font-size: 15px;
       line-height: 1.4em;
@@ -129,7 +125,6 @@ export default {
       padding: 10px 5px;
       box-sizing: border-box;
     }
-
     pre code {
       display: block !important;
       white-space: pre;
@@ -138,22 +133,18 @@ export default {
       padding: 10px 5px;
       background-color: var(--gray-0);
     }
-
     strong,
     b {
       color: var(--red-700);
     }
-
     em,
     i {
       color: var(--red-400);
     }
-
     hr {
       border: 1px solid var(--red-700);
       margin: 1.5em auto;
     }
-
     p {
       margin: 0 5px 1.5em 5px !important;
       img {
@@ -321,10 +312,12 @@ export default {
       background-color: var(--red-400);
     }
   }
+
   ::v-deep .full-active {
     width: 100%;
     height: 100%;
   }
+
   .area-catalog {
     position: fixed;
     right: 2px;
@@ -361,6 +354,7 @@ export default {
     }
   }
 }
+
 @media only screen and (max-width: 1024px) {
   ::v-deep .area-content {
     width: 100% !important;

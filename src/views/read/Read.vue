@@ -2,35 +2,33 @@
  * @Autor: huasenjio
  * @Date: 2022-04-05 23:40:21
  * @LastEditors: huasenjio
- * @LastEditTime: 2022-09-22 00:08:59
+ * @LastEditTime: 2022-09-25 15:40:53
  * @Description: 
 -->
 <template>
   <div class="read">
     <main>
-      <div class="content">
+      <header>
         <div class="title-group flex my-px-10">
           <div class="title text-3xl flex-1 text">
             {{ article.title }}
           </div>
-          <div class="icon-group text-xl hover:text-red-500 pointer" @click="goBack">
+          <div class="icon-group text-xl pointer" @click="goBack">
             返回
             <i class="iconfont icon-tuichu text-xl"></i>
           </div>
         </div>
-        <div class="tag-group">
+        <div class="tag-group text">
           <div v-for="item in tags" :key="item" v-randomColor class="text-white inline-block text-xs px-px-8 py-px-2 first:mx-px-0 mx-px-4 rounded-full">
             {{ item }}
           </div>
         </div>
         <div class="info-group">
-          <div class="text">
-            {{ `花森原创 · 最后修改于${time}` }}
-          </div>
+          <div class="text">{{ `花森原创 · 最后修改于${time}` }}</div>
         </div>
-        <div class="my-px-10 overflow-x-hidden overflow-y-auto">
-          <HMarkdown :value="article.content"></HMarkdown>
-        </div>
+      </header>
+      <div class="content">
+        <HMarkdown :value="article.content"></HMarkdown>
         <footer class="footer-group">
           <div class="text">版权说明：MIT开源协议</div>
           <div class="text">免责声明：文章仅供学习交流 禁止用于商业用途</div>
@@ -111,32 +109,38 @@ export default {
   align-items: center;
   main {
     width: calc(100% - 20px);
-    min-height: calc(100% - 20px);
-    padding: 20px 10px;
-    border-radius: 4px;
+    height: calc(100% - 20px);
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
     box-sizing: border-box;
+    overflow-x: hidden;
+    overflow-y: auto;
     background-color: var(--gray-0);
-    .content {
+    header {
+      width: 100%;
+      height: 110px;
       .title-group {
+        width: 100%;
+        height: 42px;
         display: flex;
         align-items: center;
       }
       .tag-group {
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        word-break: break-all;
+        width: 100%;
+        height: 22px;
+        margin: 10px 0;
       }
       .info-group {
-        width: auto;
+        width: 100%;
         height: 24px;
-        line-height: 24px;
-        margin: 10px 0;
-        box-sizing: border-box;
         color: var(--gray-700);
       }
+    }
+    .content {
+      flex: 1;
       .footer-group {
-        width: auto;
+        width: 100%;
         height: 58px;
         display: flex;
         justify-content: center;
