@@ -2,7 +2,7 @@
  * @Autor: huasenjio
  * @Date: 2021-08-25 01:53:35
  * @LastEditors: huasenjio
- * @LastEditTime: 2022-09-04 23:28:00
+ * @LastEditTime: 2022-09-27 01:06:39
  * @Description: 统一注册组件
  */
 import Vue from 'vue';
@@ -27,4 +27,5 @@ huasen.install = function(Vue) {
   // 5.vue原型绑定对象
   Vue.prototype.$hToast = hToast;
 };
-export default huasen;
+
+Vue.use(huasen);
