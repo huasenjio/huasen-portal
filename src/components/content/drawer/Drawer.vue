@@ -2,7 +2,7 @@
  * @Autor: huasenjio
  * @Date: 2022-09-15 23:46:58
  * @LastEditors: huasenjio
- * @LastEditTime: 2022-09-17 00:53:29
+ * @LastEditTime: 2022-09-30 00:58:00
  * @Description: 二次封装el-drawer组件
 -->
 
@@ -17,10 +17,7 @@ export default {
   name: 'HsDrawer',
   computed: {
     drawerStyle() {
-      let size =
-        typeof this.$attrs.size === 'string' && /^\d+%$/.test(this.$attrs.size)
-          ? this.$attrs.size
-          : `${this.$attrs.size}px`;
+      let size = typeof this.$attrs.size === 'string' && /^\d+%$/.test(this.$attrs.size) ? this.$attrs.size : `${this.$attrs.size}px`;
       return {
         '--drawerMinWidth': size,
       };

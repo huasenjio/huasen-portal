@@ -2,7 +2,7 @@
  * @Autor: huasenjio
  * @Date: 2022-09-10 15:01:36
  * @LastEditors: huasenjio
- * @LastEditTime: 2022-09-17 21:42:29
+ * @LastEditTime: 2022-09-30 00:58:13
  * @Description: 
 -->
 <template>
@@ -11,39 +11,18 @@
       <div class="label">背景颜色</div>
       <div class="color-pick">
         <ul>
-          <li
-            v-for="(item, index) in backgroundColors"
-            :key="index"
-            @click="changeStyle(item, 'backgroundColor')"
-            :style="{ backgroundColor: item }"
-          ></li>
+          <li v-for="(item, index) in backgroundColors" :key="index" @click="changeStyle(item, 'backgroundColor')" :style="{ backgroundColor: item }"></li>
         </ul>
-        <el-color-picker
-          class="picker"
-          v-model="backgroundColor"
-          @change="changeStyle($event, 'backgroundColor')"
-          size="mini"
-          show-alpha
-        ></el-color-picker>
+        <el-color-picker class="picker" v-model="backgroundColor" @change="changeStyle($event, 'backgroundColor')" size="mini" show-alpha></el-color-picker>
       </div>
     </section>
     <section class="menu-item">
       <div class="label">字体颜色</div>
       <div class="color-pick">
         <ul>
-          <li
-            v-for="(item, index) in colors"
-            :key="index"
-            @click="changeStyle(item, 'color')"
-            :style="{ backgroundColor: item }"
-          ></li>
+          <li v-for="(item, index) in colors" :key="index" @click="changeStyle(item, 'color')" :style="{ backgroundColor: item }"></li>
         </ul>
-        <el-color-picker
-          class="picker"
-          v-model="color"
-          @change="changeStyle($event, 'color')"
-          size="mini"
-        ></el-color-picker>
+        <el-color-picker class="picker" v-model="color" @change="changeStyle($event, 'color')" size="mini"></el-color-picker>
       </div>
     </section>
     <section>
@@ -70,15 +49,7 @@ export default {
       color: '',
 
       // 色值
-      backgroundColors: [
-        '#9CA3AF',
-        '#F87171',
-        '#FBBF24',
-        '#34D399',
-        '#60A5FA',
-        '#A78BFA',
-        '#F472B6',
-      ],
+      backgroundColors: ['#9CA3AF', '#F87171', '#FBBF24', '#34D399', '#60A5FA', '#A78BFA', '#F472B6'],
       colors: ['#F9FAFB', '#F3F4F6', '#9CA3AF', '#6B7280', '#4B5563', '#1F2937', '#111827'],
     };
   },

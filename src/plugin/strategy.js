@@ -41,21 +41,13 @@ let strategies = {
   },
   // 姓名
   isName: function(value, errorMsg) {
-    if (
-      !/^([\u4E00-\u9FA5\uf900-\ufa2d0-9a-zA-Z]·?)*[\u4E00-\u9FA5\uf900-\ufa2d0-9a-zA-Z]$/.test(
-        value,
-      )
-    ) {
+    if (!/^([\u4E00-\u9FA5\uf900-\ufa2d0-9a-zA-Z]·?)*[\u4E00-\u9FA5\uf900-\ufa2d0-9a-zA-Z]$/.test(value)) {
       return errorMsg;
     }
   },
   // 网址链接
   isUrl: function(value, errorMsg) {
-    if (
-      !/^((https?:\/\/)|(www\.))((([0-9]{1,3}\.){3}[0-9]{1,3})|localhost|([a-zA-Z0-9]+\.[a-zA-Z0-9]+)+)((\/[a-zA-Z0-9]*)+|(:\d+\/)|(\/#\/))/.test(
-        value,
-      )
-    ) {
+    if (!/^((https?:\/\/)|(www\.))((([0-9]{1,3}\.){3}[0-9]{1,3})|localhost|([a-zA-Z0-9]+\.[a-zA-Z0-9]+)+)((\/[a-zA-Z0-9]*)+|(:\d+\/)|(\/#\/))/.test(value)) {
       return errorMsg;
     }
   },
@@ -66,20 +58,12 @@ let strategies = {
     }
   },
   isPlateNumber: function(value, errorMsg) {
-    if (
-      !/^(([京津沪渝冀豫云辽黑湘皖鲁新苏浙赣鄂桂甘晋蒙陕吉闽贵粤青藏川宁琼使领][A-Z](([0-9]{5}[DF])|([DF]([A-HJ-NP-Z0-9])[0-9]{4})))|([京津沪渝冀豫云辽黑湘皖鲁新苏浙赣鄂桂甘晋蒙陕吉闽贵粤青藏川宁琼使领][A-Z][A-HJ-NP-Z0-9]{4}[A-HJ-NP-Z0-9挂学警港澳使领]))$/.test(
-        value,
-      )
-    ) {
+    if (!/^(([京津沪渝冀豫云辽黑湘皖鲁新苏浙赣鄂桂甘晋蒙陕吉闽贵粤青藏川宁琼使领][A-Z](([0-9]{5}[DF])|([DF]([A-HJ-NP-Z0-9])[0-9]{4})))|([京津沪渝冀豫云辽黑湘皖鲁新苏浙赣鄂桂甘晋蒙陕吉闽贵粤青藏川宁琼使领][A-Z][A-HJ-NP-Z0-9]{4}[A-HJ-NP-Z0-9挂学警港澳使领]))$/.test(value)) {
       return errorMsg;
     }
   },
   isEmail: function(value, errorMsg) {
-    if (
-      !/^(([^()[\]\\.,;:\s@\\"]+(\.[^()[\]\\.,;:\s@\\"]+)*)|(\\".+\\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(
-        value,
-      )
-    ) {
+    if (!/^(([^()[\]\\.,;:\s@\\"]+(\.[^()[\]\\.,;:\s@\\"]+)*)|(\\".+\\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(value)) {
       return errorMsg;
     }
   },

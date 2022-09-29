@@ -2,40 +2,19 @@
  * @Autor: huasenjio
  * @Date: 2022-09-12 10:40:59
  * @LastEditors: huasenjio
- * @LastEditTime: 2022-09-19 22:07:51
+ * @LastEditTime: 2022-09-30 00:57:56
  * @Description: 全局表单处理弹框
 -->
 
 <template>
-  <HsDialog
-    class="dialog-form"
-    v-bind="$attrs"
-    v-on="$listeners"
-    @comfirmDialog="comfirmDialog"
-    @closeDialog="closeDialog"
-  >
+  <HsDialog class="dialog-form" v-bind="$attrs" v-on="$listeners" @comfirmDialog="comfirmDialog" @closeDialog="closeDialog">
     <el-form ref="form" class="form-group" :model="formData" :rules="formRule" label-position="top">
-      <el-form-item
-        v-for="(item, index) in formMap"
-        :key="index"
-        :label="item.label"
-        :prop="item.key"
-      >
+      <el-form-item v-for="(item, index) in formMap" :key="index" :label="item.label" :prop="item.key">
         <!-- 输入框 -->
         <el-input v-if="item.type === 'input'" v-model="formData[item.key]"></el-input>
         <!-- 选择框 -->
-        <el-select
-          v-if="item.type === 'select'"
-          v-model="formData[item.key]"
-          :popper-append-to-body="false"
-        >
-          <el-option
-            v-for="(option, i) in item.selectOptions"
-            :key="i"
-            :label="option.label"
-            :value="option.value"
-          >
-          </el-option>
+        <el-select v-if="item.type === 'select'" v-model="formData[item.key]" :popper-append-to-body="false">
+          <el-option v-for="(option, i) in item.selectOptions" :key="i" :label="option.label" :value="option.value"> </el-option>
         </el-select>
         <!-- 单选框 -->
         <!-- 复选框 -->

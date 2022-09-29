@@ -2,11 +2,12 @@
  * @Autor: huasenjio
  * @Date: 2022-09-03 13:59:36
  * @LastEditors: huasenjio
- * @LastEditTime: 2022-09-05 23:47:14
- * @Description: 移动端设备，通过缩放可视窗口，实现完美展现，文档最小值为435px，根据业务修改
+ * @LastEditTime: 2022-09-30 00:26:19
+ * @Description: 移动端设备，通过缩放可视窗口，实现完美展现
  */
 
 import { debounce } from 'lodash';
+import CONSTENT from '@/constant/index.js';
 
 // 不缩放开关
 let noScale = undefined;
@@ -14,7 +15,7 @@ let noScale = undefined;
 // resize事件回调
 let scaleDocument = debounce(e => {
   let viewport = document.getElementById('viewport');
-  let scale = document.body.clientWidth / 435;
+  let scale = document.body.clientWidth / CONSTENT.appMinWidth;
   if (scale == 1 || noScale) {
     noScale = true;
     return;

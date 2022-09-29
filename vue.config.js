@@ -2,7 +2,7 @@
  * @Autor: huasenjio
  * @Date: 2021-08-25 01:53:35
  * @LastEditors: huasenjio
- * @LastEditTime: 2022-09-25 17:48:58
+ * @LastEditTime: 2022-09-30 00:30:37
  * @Description: 项目配置文件
  */
 const path = require('path');
@@ -14,7 +14,6 @@ function resolve(dir) {
 }
 
 module.exports = {
-  // outputDir: '../../huasen-server/public/webapp/portal', // 输出路径
   publicPath: './',
   transpileDependencies: ['highlight.js'],
   productionSourceMap: false,

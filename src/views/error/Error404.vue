@@ -2,7 +2,7 @@
  * @Autor: huasenjio
  * @Date: 2021-08-25 01:53:35
  * @LastEditors: huasenjio
- * @LastEditTime: 2022-09-01 00:01:27
+ * @LastEditTime: 2022-09-30 01:04:16
  * @Description: 
 -->
 <template>
@@ -20,9 +20,9 @@ export default {
 </script>
 <style lang="scss" scoped>
 .error {
+  position: relative;
   width: 100%;
   height: 100%;
-  position: relative;
   .main {
     width: 200px;
     height: 200px;

@@ -2,16 +2,12 @@
  * @Autor: huasenjio
  * @Date: 2021-12-08 23:24:34
  * @LastEditors: huasenjio
- * @LastEditTime: 2022-09-19 22:20:15
+ * @LastEditTime: 2022-09-30 01:05:13
  * @Description: 
 -->
 <template>
   <div v-rightMenu="{ id: 'homeSite' }" class="home-site">
-    <section
-      :id="`site-anchor-${encodeURI(item.typeName)}`"
-      v-for="(item, index) in categorySites"
-      :key="index"
-    >
+    <section :id="`site-anchor-${encodeURI(item.typeName)}`" v-for="(item, index) in categorySites" :key="index">
       <div v-rightMenu="{ id: `homeSiteItem${index}` }" class="site-item">
         <header>
           <i class="iconfont icon-tag"></i>
@@ -19,21 +15,10 @@
         </header>
         <main>
           <ul v-balance>
-            <a
-              class="site inherit-text"
-              v-for="(site, i) in item.sites"
-              :key="i"
-              :href="site.url"
-              :title="site.describe"
-              target="_blank"
-            >
+            <a class="site inherit-text" v-for="(site, i) in item.sites" :key="i" :href="site.url" :title="site.describe" target="_blank">
               <div class="site-card inherit-text text w-px-180 sm:w-px-150">
                 <div class="img-group icon-hs w-px-100 h-px-100" :class="site.imgClass"></div>
-                <div
-                  v-rightMenu="{ id: `homeSiteItemLoading${i}` }"
-                  v-if="showLoadingIcon(site)"
-                  class="img-loading w-px-100 h-px-100"
-                ></div>
+                <div v-rightMenu="{ id: `homeSiteItemLoading${i}` }" v-if="showLoadingIcon(site)" class="img-loading w-px-100 h-px-100"></div>
                 <div class="text-group">
                   <div class="name text">{{ site.name }}</div>
                   <div class="describe inherit-text text">{{ site.describe }}</div>

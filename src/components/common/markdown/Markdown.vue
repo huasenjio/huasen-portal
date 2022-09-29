@@ -3,7 +3,7 @@
     <!-- 文章内容 -->
     <div v-html="htmlText" v-highlight ref="areaContent" :class="{ 'full-active': anchors.length == 0 }" class="area-content"></div>
     <!-- 目录 -->
-    <ul v-rightMenu="{ id: 'markdownAreaCatalog' }" v-if="anchors.length != 0" class="area-catalog block md:hidden overflow-x-hidden overflow-y-auto">
+    <ul v-if="anchors.length != 0" class="area-catalog block md:hidden overflow-x-hidden overflow-y-auto">
       <li v-for="(item, index) in anchors" :key="index" :style="handleStyle(item)">
         <i v-if="item.tagName == 'H1' || item.tagName == 'H2'" :class="{ h1Point: item.tagName == 'H1', h2Point: item.tagName == 'H2' }" class="point"> </i>
         <div class="text pointer" :title="item.value" @click="goAnchor(item.id)">

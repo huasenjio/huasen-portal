@@ -2,7 +2,7 @@
  * @Autor: huasenjio
  * @Date: 2021-11-15 22:14:23
  * @LastEditors: huasenjio
- * @LastEditTime: 2022-09-23 00:24:46
+ * @LastEditTime: 2022-09-30 00:22:15
  * @Description:
  */
 import { handleURL } from './handleURL';
@@ -19,6 +19,7 @@ import { randomInt } from './randomInt.js';
 import { getUid } from './getUid';
 import { judgeBgType } from './judgeBgType';
 import { debounce } from './debounce.js';
+import { handleSize } from './handleSize.js';
 
 export default {
   handleURL,
@@ -35,4 +36,5 @@ export default {
   getUid,
   judgeBgType,
   debounce,
+  handleSize,
 };

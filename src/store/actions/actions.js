@@ -2,7 +2,7 @@
  * @Autor: huasenjio
  * @Date: 2021-08-25 01:53:35
  * @LastEditors: huasenjio
- * @LastEditTime: 2022-09-19 00:38:58
+ * @LastEditTime: 2022-09-30 01:01:54
  * @Description:
  */
 import Vue from 'vue';
@@ -44,7 +44,6 @@ export default {
       let node = document.getElementById(id);
       if (node) {
         node.classList.add('inherit-theme');
-
         node.style.color = localStyle[id].color;
         node.style.backgroundColor = localStyle[id].backgroundColor;
       }
@@ -65,17 +64,3 @@ export default {
     });
   },
 };
-
-// import { mapActions } from 'vuex'
-// export default {
-//   methods: {
-//     // 1.数组形式
-//     ...mapActions([
-//       'initLocalUserInfo', // 将 `this.initLocalUserInfo()` 映射为 `this.$store.dispatch('initLocalUserInfo', payload)`
-//     ]),
-//     // 2.对象形式
-//     ...mapActions({
-//       add: 'getUser' // 将 `this.add()` 映射为 `this.$store.dispatch('payload')`
-//     })
-//   }
-// }
