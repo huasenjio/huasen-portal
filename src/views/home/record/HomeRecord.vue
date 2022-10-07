@@ -2,7 +2,7 @@
  * @Autor: huasenjio
  * @Date: 2021-12-05 20:23:00
  * @LastEditors: huasenjio
- * @LastEditTime: 2022-09-24 23:25:41
+ * @LastEditTime: 2022-10-08 00:29:09
  * @Description: 
 -->
 <template>
@@ -64,7 +64,7 @@
 </template>
 <script>
 import { mapState, mapMutations } from 'vuex';
-import { checkSiteName, checkSiteUrl, checkSiteRemark } from '@/plugin/rules.js';
+import { getElementFormValidator } from '@/plugin/strategy.js';
 
 import DialogForm from '@/components/content/dialogForm/DialogForm.vue';
 import CustomWallpaperDrawer from '@/components/content/customWallPaperDrawer/CustomWallpaperDrawer.vue';
@@ -105,9 +105,8 @@ export default {
         },
       ],
       formRule: {
-        name: [{ validator: checkSiteName, trigger: 'blur' }],
-        url: [{ validator: checkSiteUrl, trigger: 'blur' }],
-        // remark: [{ validator: checkSiteRemark, trigger: 'blur' }],
+        name: [{ validator: getElementFormValidator(['isNoEmpty::必填项', 'isChinese::请输入汉字/英文/数字']), trigger: 'blur' }],
+        url: [{ validator: getElementFormValidator(['isNoEmpty::必填项', 'isUrl::请输入正确的网址']), trigger: 'blur' }],
       },
     };
   },

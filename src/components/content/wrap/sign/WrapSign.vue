@@ -2,7 +2,7 @@
  * @Autor: huasenjio
  * @Date: 2021-11-27 22:38:22
  * @LastEditors: huasenjio
- * @LastEditTime: 2022-09-21 23:36:59
+ * @LastEditTime: 2022-10-08 00:26:04
  * @Description: 登陆面板
 -->
 <template>
@@ -73,7 +73,7 @@
 </template>
 <script>
 import { mapState, mapMutations } from 'vuex';
-import { checkId, checkPassword, checkMailCode } from 'plugin/rules.js';
+import { getElementFormValidator } from '@/plugin/strategy.js';
 import HsDialog from '@/components/content/dialog/Dialog.vue';
 export default {
   name: 'WrapSign',
@@ -89,9 +89,9 @@ export default {
 
       // 校验的规则
       rules: {
-        id: [{ validator: checkId, trigger: 'blur' }],
-        password: [{ validator: checkPassword, trigger: 'blur' }],
-        mailCode: [{ validator: checkMailCode, trigger: 'blur' }],
+        id: [{ validator: getElementFormValidator(['isNoEmpty::必填项', 'minLength:5::长度小于5', 'maxLength:20::长度大于20', 'isEmail::请输入邮箱']), trigger: 'blur' }],
+        password: [{ validator: getElementFormValidator(['isNoEmpty::必填项', 'minLength:5::长度小于5', 'maxLength:20::长度大于20', 'isPassword::仅支持数字/字母/下划线']), trigger: 'blur' }],
+        mailCode: [{ validator: getElementFormValidator(['isNoEmpty::必填项', 'isNumber::请输入数字']), trigger: 'blur' }],
       },
 
       // 状态变量

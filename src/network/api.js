@@ -2,7 +2,7 @@
  * @Autor: huasenjio
  * @Date: 2021-08-25 01:53:35
  * @LastEditors: huasenjio
- * @LastEditTime: 2022-09-06 21:44:42
+ * @LastEditTime: 2022-10-08 00:30:47
  * @Description: 统一导出api接口
  */
 
@@ -11,9 +11,9 @@ import Mock from 'mockjs2';
 // 封装的请求方法
 import { get, post } from './request.js';
 
-import commonAPI from './api/common.js';
-import userAPI from './api/user.js';
-import newsAPI from './api/news.js';
+import commonAPI from './address/common.js';
+import userAPI from './address/user.js';
+import newsAPI from './address/news.js';
 
 // mock功能
 const mock = get('/mock/test', {

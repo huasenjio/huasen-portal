@@ -114,4 +114,33 @@ function checkParamsByRules(arr) {
   }
 }
 
-export { Validator, checkParamsByRules };
+/**
+ * 辅助el-form校验方法
+ * @param {Array} stratArr 校验规则数组 ['isNoEmpty::必填项']
+ * @returns
+ */
+function getElementFormValidator(stratArr) {
+  let rules = stratArr.map(item => {
+    let temp = item.split('::');
+    return {
+      strategy: temp[0],
+      errMsg: temp[1],
+    };
+  });
+  return function(formR, formItemV, callback) {
+    let errText = checkParamsByRules([
+      {
+        rules: rules,
+        value: formItemV,
+      },
+    ]);
+    // 存在错误
+    if (errText) {
+      callback(new Error(errText));
+    } else {
+      callback();
+    }
+  };
+}
+
+export { Validator, checkParamsByRules, getElementFormValidator };
