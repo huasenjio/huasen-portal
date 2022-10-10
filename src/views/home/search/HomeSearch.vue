@@ -170,9 +170,9 @@ export default {
         let ideas = [];
         let regKeys = [];
         for (let i = 0; i <= this.searchText.length; i++) {
-          for (let j = 0; j <= this.searchText.length; j++) {
+          for (let j = i + 1; j <= this.searchText.length; j++) {
             let regKey = this.searchText.slice(i, j);
-            if (regKey) regKeys.push(regKey);
+            regKeys.push(regKey);
           }
         }
         regKeys.forEach(key => {
