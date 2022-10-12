@@ -1,8 +1,8 @@
 @font-face {
   font-family: "iconfont"; /* Project id 2940247 */
-  src: url('iconfont.woff2?t=1639235434304') format('woff2'),
-       url('iconfont.woff?t=1639235434304') format('woff'),
-       url('iconfont.ttf?t=1639235434304') format('truetype');
+  src: url('iconfont.woff2?t=1665594603766') format('woff2'),
+       url('iconfont.woff?t=1665594603766') format('woff'),
+       url('iconfont.ttf?t=1665594603766') format('truetype');
 }
 
 .iconfont {
@@ -11,6 +11,162 @@
   font-style: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-excel:before {
+  content: "\e6a5";
+}
+
+.icon-pdf:before {
+  content: "\e740";
+}
+
+.icon-CSS:before {
+  content: "\e614";
+}
+
+.icon-HTML:before {
+  content: "\e617";
+}
+
+.icon-js:before {
+  content: "\ec68";
+}
+
+.icon-qitawenjian:before {
+  content: "\e683";
+}
+
+.icon-file-ppt:before {
+  content: "\e7b9";
+}
+
+.icon-file-word:before {
+  content: "\e7ba";
+}
+
+.icon-yasuobao:before {
+  content: "\e64d";
+}
+
+.icon-tupian:before {
+  content: "\e63d";
+}
+
+.icon-file-markdown:before {
+  content: "\e95e";
+}
+
+.icon-badge-fill:before {
+  content: "\e9fe";
+}
+
+.icon-badge-line:before {
+  content: "\ea0c";
+}
+
+.icon-a-boxminus-line:before {
+  content: "\ea22";
+}
+
+.icon-bug-fill:before {
+  content: "\ea69";
+}
+
+.icon-a-documentationupload-line:before {
+  content: "\eb69";
+}
+
+.icon-a-Downloadto-fill:before {
+  content: "\eb70";
+}
+
+.icon-exit-line:before {
+  content: "\eb8d";
+}
+
+.icon-girl-line:before {
+  content: "\ec38";
+}
+
+.icon-interactive-fill:before {
+  content: "\eca7";
+}
+
+.icon-man-line:before {
+  content: "\ed11";
+}
+
+.icon-a-lefttoo-line:before {
+  content: "\ed17";
+}
+
+.icon-pen-fill:before {
+  content: "\eda5";
+}
+
+.icon-remind-line:before {
+  content: "\ee11";
+}
+
+.icon-a-rightlinefill-line:before {
+  content: "\ee19";
+}
+
+.icon-robot-line:before {
+  content: "\ee35";
+}
+
+.icon-rocket-fill:before {
+  content: "\ee3a";
+}
+
+.icon-a-smartrobot-fill:before {
+  content: "\ef09";
+}
+
+.icon-star-fill:before {
+  content: "\ef0b";
+}
+
+.icon-star-line:before {
+  content: "\ef14";
+}
+
+.icon-think-fill:before {
+  content: "\ef91";
+}
+
+.icon-trophy-fill:before {
+  content: "\efa6";
+}
+
+.icon-a-unfoldcross-line:before {
+  content: "\efb5";
+}
+
+.icon-bianji-yonghu:before {
+  content: "\efc6";
+}
+
+.icon-tianjia-yonghu:before {
+  content: "\efc7";
+}
+
+.icon-a-leftsmallline-line:before {
+  content: "\f010";
+}
+
+.icon-a-rightsmallline-line:before {
+  content: "\f011";
+}
+
+.icon-a-upsmall-line:before {
+  content: "\f012";
+}
+
+.icon-a-undersmall-line:before {
+  content: "\f013";
 }
 
 .icon-tag:before {
@@ -227,10 +383,6 @@
 
 .icon-md-moon:before {
   content: "\e9ba";
-}
-
-.icon-iconset0123:before {
-  content: "\e616";
 }
 
 .icon-iconset0133:before {
