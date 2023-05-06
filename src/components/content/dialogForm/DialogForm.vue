@@ -2,7 +2,7 @@
  * @Autor: huasenjio
  * @Date: 2022-09-12 10:40:59
  * @LastEditors: huasenjio
- * @LastEditTime: 2023-03-19 17:13:49
+ * @LastEditTime: 2023-05-06 23:49:05
  * @Description: 全局表单处理弹框
 -->
 
@@ -91,6 +91,9 @@ export default {
     closeDialog() {
       this.$refs.form.resetFields();
       this.$emit('cancelForm');
+    },
+    resetFormFields() {
+      this.$refs.form.resetFields();
     },
   },
 };

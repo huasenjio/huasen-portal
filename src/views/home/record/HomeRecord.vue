@@ -2,7 +2,7 @@
  * @Autor: huasenjio
  * @Date: 2021-12-05 20:23:00
  * @LastEditors: huasenjio
- * @LastEditTime: 2023-04-29 21:18:24
+ * @LastEditTime: 2023-05-06 23:49:34
  * @Description: 
 -->
 <template>
@@ -205,7 +205,7 @@ export default {
     // 取消表单编辑
     cancel() {
       if (this.$refs.dialogForm) {
-        this.$refs.dialogForm.closeDialog();
+        this.$refs.dialogForm.resetFormFields();
       }
       this.showForm = false;
     },
