@@ -47,14 +47,29 @@ export default {
   themeConfig: {
     pure: [],
     wallpaper: [],
+    defaultWallpaper: {},
   },
+
   // 系统配置
   appConfig: {
+    // 配别配置加载情况
+    loaded: false,
+
     article: {
       id: '',
       course: '',
       about: '',
       help: '',
+    },
+    site: {
+      name: '花森',
+      logoURL: require('@/assets/img/logo/favicon.svg'),
+      redirectURL: 'http://huasen.cc/',
+      guidePageName: '花森小窝',
+      guidePageUrl: 'http://huasen.cc/',
+      footerHtml: '',
+      serviceQRCodeUrl: require('@/assets/img/logo/weixin.png'),
+      openLabelClassification: false,
     },
   },
 };

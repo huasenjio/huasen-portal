@@ -93,6 +93,7 @@ export default {
   .article-group {
     width: calc(100% - 20px);
     height: calc(100% - 20px);
+    align-content: flex-start;
     margin: 10px;
     border-radius: 4px;
     background-color: var(--gray-0);
@@ -103,7 +104,7 @@ export default {
       width: 100%;
       height: calc(100% - 90px);
       img {
-        transition: all 0.3s linear;
+        transition: transform 0.3s linear;
         &:hover {
           transform: scale(1.15);
         }

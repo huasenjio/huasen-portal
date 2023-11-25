@@ -2,7 +2,7 @@
  * @Autor: huasenjio
  * @Date: 2021-12-05 20:23:00
  * @LastEditors: huasenjio
- * @LastEditTime: 2023-05-06 23:49:34
+ * @LastEditTime: 2023-06-10 00:12:58
  * @Description: 
 -->
 <template>
@@ -46,25 +46,28 @@
     <main v-rightMenu>
       <ul v-balance>
         <li class="record-item" v-for="(item, index) in user.records" :key="`${item}-${index}`">
-          <a class="inherit-text text" v-if="!isEditMode" :href="item.url" target="_blank">
+          <a class="inherit-text text" v-if="!isEditMode" :title="item.remark" :href="item.url" target="_blank">
             {{ item.name }}
           </a>
           <!-- 编辑的替身 -->
           <a v-else @click="handleEdit(item, index)" class="pointer text" :class="{ 'edit-mode': isEditMode }">
-            点击编辑
+            {{ item.name }}
           </a>
           <!-- 删除按钮 -->
           <i v-if="isDeleteMode" @click="handleDelete(item)" class="iconfont icon-md-close-circle delete-icon"> </i>
         </li>
       </ul>
     </main>
-    <DialogForm v-if="showForm" :visible.sync="showForm" ref="dialogForm" width="400" :buttons="{ comfirm: '确 认', cancel: '取 消' }" :title="title" :formData="formData" :formMap="formMap" :formRule="formRule" @comfirmForm="save" @cancelForm="cancel"></DialogForm>
+    <DialogForm v-if="showForm" :visible.sync="showForm" ref="dialogForm" width="400" :buttons="{ comfirm: '确 认', cancel: '取 消' }" :title="title" :close-on-click-modal="false" :formData="formData" :formMap="formMap" :formRule="formRule" @comfirmForm="save" @cancelForm="cancel"></DialogForm>
     <CustomWallpaperDrawer v-if="showCustom" title="个性墙纸" :visible.sync="showCustom" :direction="'rtl'" :size="435"></CustomWallpaperDrawer>
   </div>
 </template>
 <script>
 import { mapState, mapMutations } from 'vuex';
 import { getElementFormValidator } from '@/plugin/strategy.js';
+
+import Bus from '@/plugin/event-bus.js';
+import * as BusType from '@/plugin/event-type.js';
 
 import DialogForm from '@/components/content/dialogForm/DialogForm.vue';
 import CustomWallpaperDrawer from '@/components/content/customWallPaperDrawer/CustomWallpaperDrawer.vue';
@@ -103,6 +106,7 @@ export default {
           key: 'remark',
           label: '备注',
           type: 'textarea',
+          minRows: 4,
         },
       ],
       formRule: {
@@ -113,6 +117,16 @@ export default {
   },
   computed: {
     ...mapState(['user', 'config']),
+  },
+  watch: {
+    // 打开编辑面板时，关闭监听 / 聚焦搜索框事件。
+    showForm(val) {
+      if (val) {
+        Bus.pubEv(BusType.HOME_DESTROY_KEYUP_SLASH);
+      } else {
+        Bus.pubEv(BusType.HOME_CREATE_KEYUP_SLASH);
+      }
+    },
   },
   methods: {
     ...mapMutations(['commitAll']),
@@ -230,6 +244,7 @@ export default {
 
     // 恢复保存数据
     async handleRecovery() {
+      Bus.pubEv(BusType.HOME_DESTROY_KEYUP_SLASH);
       try {
         let rawData;
         if (navigator.clipboard && window.isSecureContext) {
@@ -239,6 +254,8 @@ export default {
           // 不安全状态下使用对话框形式
           rawData = prompt('请粘贴之前拷贝保存的数据进行恢复');
         }
+        // 排除不输入的情况下
+        if (!rawData) return;
         let data = JSON.parse(rawData);
         let { records, config } = data;
         // 排除移除异常情况
@@ -256,6 +273,8 @@ export default {
         });
       } catch (err) {
         this.$tips('error', '恢复数据失败', 'top-right', 2000);
+      } finally {
+        Bus.pubEv(BusType.HOME_CREATE_KEYUP_SLASH);
       }
     },
     openCustomWallpaper() {

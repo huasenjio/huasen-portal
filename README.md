@@ -6,17 +6,17 @@
 
 ## 📌 关于
 
-基于 Vue.js 的门户项目，剥离 huasenjio-compose 仓库的主页和博客模块组成的前后分离的纯前端静态版本。借助 localStorage 本地存储，几乎可以体验线上版本的所有功能。提供插拔式数据模拟的网络模块，达到无感地对接后端服务的效果。
+基于 Vue2.js 框架的门户项目，剥离 [huasenjio-compose](https://github.com/huasenjio/huasenjio-compose)  仓库的主页和博客模块，单独创建的**纯前端**静态版本。借助 localStorage 本地存储，几乎可以体验线上版本的所有功能。内置**插拔式数据模拟网络模块**，支持无感对接后端服务，达到快速集成门户的效果。如果我的项目给您带来帮助，请点一个 star（🌟）！您的鼓励和支持，对我真的很重要！
 
 
 
 ## 💪 开源列表
 
-✅ 花森门户容器版（huasenjio-compose）
+✅ 花森门户容器版（[huasenjio-compose](https://github.com/huasenjio/huasenjio-compose)）
 
-✅ 花森门户静态版（huasen-protal）
+✅ 花森门户静态版（[huasen-protal](https://github.com/huasenjio/huasen-portal)）
 
-✅ 花森脚手架（huasen-cli）
+✅ 花森脚手架（[huasen-cli](https://github.com/huasenjio/huasen-cli)）
 
 ☑️ 花森低代码平台 （预研）
 
@@ -38,7 +38,7 @@
 
 ## 💡 平台简介
 
-花森门户由**浏览器主页网址导航**、**博客系统**、**后台管理系统**组成，浏览器主页收录资源网站，涵盖了日常生活、娱乐、学习、影视、考研、工作、科技、实用工具等领域。博客系统，定期分享实用教程、计算机知识、资源软件等文章，致力于提供高效上网冲浪环境的公益性平台！
+花森门户前端静态版由**浏览器主页网址导航**、**博客系统**组成，浏览器主页支持收录资源网站，博客提供 Markdown 文章显示的能力。
 
 
 
@@ -60,9 +60,11 @@
 
 ✅ 极简模式，干净简洁；
 
-✅ 实时天气；
+✅ 实时天气显示；
 
-✅ Markdown文章阅读，支持三级锚点目录；
+✅ Markdown 文章阅读，支持三级锚点目录；
+
+✅ 支持多层级网站分类，显示置顶图标；
 
 ☑️ ......
 
@@ -74,45 +76,47 @@
 
 #### 1.响应式适配
 
+> ⚠️ 响应式适配渲染图非最新界面
+
 ![amP73Q5ctpU9sf4](https://s2.loli.net/2023/02/07/amP73Q5ctpU9sf4.png)
 
 #### 2.首页+搜索+右键换肤
 
-![bwT5saFxQz2RYon](https://s2.loli.net/2022/11/12/bwT5saFxQz2RYon.png)
+![Wf7Jb1ZCRP3vNO4](https://s2.loli.net/2023/11/25/Wf7Jb1ZCRP3vNO4.png)
 
 #### 3.极简模式
 
-![xM3tNHzoKils7P5](https://s2.loli.net/2023/02/05/xM3tNHzoKils7P5.png)
+![dRqSG3hKMzrn8jZ](https://s2.loli.net/2023/11/25/dRqSG3hKMzrn8jZ.png)
 
 #### 4.自定义收录
 
-![woaujxGCKnWt8PB](https://s2.loli.net/2023/02/05/woaujxGCKnWt8PB.png)
+![PNf8mHUkdESDoat](https://s2.loli.net/2023/11/25/PNf8mHUkdESDoat.png)
 
 #### 5.皮肤主题
 
-![Lj3gREk8dnxbIHZ](https://s2.loli.net/2023/02/05/Lj3gREk8dnxbIHZ.png)
+![sTF8mAS7VGkPxrO](https://s2.loli.net/2023/11/25/sTF8mAS7VGkPxrO.png)
 
 #### 6.文章展示
 
-![W5NyJahVl2pM1mi](https://s2.loli.net/2023/02/05/W5NyJahVl2pM1mi.png)
+![p83bXKz7Fi6wERV](https://s2.loli.net/2023/11/25/p83bXKz7Fi6wERV.png)
 
 #### 7.文章阅读
 
-![FBDAtSpqlM86Cuz](https://s2.loli.net/2023/02/05/FBDAtSpqlM86Cuz.png)
+![jnPcSV6ApTkvZdx](https://s2.loli.net/2023/11/12/jnPcSV6ApTkvZdx.png)
 
 
 
 ## 🧩 技术清单
 
-1. 完美适配移动设备，采用 web 端响应式布局 + 移动端缩放可视窗口的黑科技；
+1. 完美适配各种重尺寸设备，采用 web 端响应式布局 + 移动端缩放可视窗口的黑科技；
 2. 高度集成 Mockjs2，实现接口数据模拟，极速无感接入后端服务；
 3. 支持菜单权限管理，支持 404、403 情况跳转；
-4. 支持添加、编辑、删除自定义网站，支持数据的拷贝保存、恢复、导出；
+4. 支持添加、编辑、删除自定义网站，数据的拷贝保存、恢复、导出；
 5. 定制化 Tailwindcss；
 6. 支持百度热词推荐、站内链接搜索高亮显示功能；
 7. 支持极简模式、任意区域右键换肤改色、更换预设墙纸、修改模糊度、调节明暗、上传壁纸的功能；
 8. 调教 ElementUI，二次封装 Dialog、Drawer 等组件，适应兼容任意尺寸屏幕；
-9. 支持 Markdown 文章展示，三级目录定位；
+9. 支持 Markdown 文章展示，三级目录锚点定位；
 10. 水印功能；
 11. 多图标合成雪碧图，减少对图片的请求次数；
 

@@ -2,7 +2,7 @@
  * @Autor: huasenjio
  * @Date: 2022-09-12 10:40:59
  * @LastEditors: huasenjio
- * @LastEditTime: 2023-05-06 23:49:05
+ * @LastEditTime: 2023-05-14 11:41:12
  * @Description: 全局表单处理弹框
 -->
 
@@ -19,7 +19,7 @@
         <!-- 单选框 -->
         <!-- 复选框 -->
         <!-- 文本域 -->
-        <el-input v-if="item.type === 'textarea'" type="textarea" v-model="formData[item.key]"></el-input>
+        <el-input v-if="item.type === 'textarea'" type="textarea" v-model="formData[item.key]" :autosize="{ minRows: item.minRows }"></el-input>
         <!-- 图片 -->
         <!-- 日期 -->
       </el-form-item>

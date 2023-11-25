@@ -16,7 +16,7 @@
 import Wrap from '@/components/content/wrap/Wrap.vue';
 import BrowserTips from '@/components/content/browserTips/BrowserTips.vue';
 
-import { mapActions } from 'vuex';
+import { mapState, mapActions } from 'vuex';
 import { initScaleDocument, destoryScaleDocument } from '@/plugin/scale-document.js';
 
 export default {
@@ -29,6 +29,8 @@ export default {
   components: { Wrap, BrowserTips },
 
   computed: {
+    ...mapState(['user', 'appConfig']),
+
     // 判断浏览器支持
     isSupport() {
       let temp = this.TOOL.judgeIE();
@@ -48,17 +50,32 @@ export default {
   },
 
   created() {
-    // 移除loading
-    this.removeLoading();
+    // 移除开屏动画
+    let loadingDOM = this.isSupport ? document.getElementById('js-app-loading__container--routine') : document.getElementById('js-app-loading__container--ie');
+    if (loadingDOM) {
+      document.body.removeChild(loadingDOM);
+    }
+
     // 调整文档大小，避免网站在移动端网页中，无法适应屏幕的问题
     initScaleDocument();
   },
 
-  mounted() {
+  async mounted() {
+    // 优先处理应用配置
+    await this.initAppConfigInfo({
+      callback: () => {
+        let brandName = this.LODASH.get(this.appConfig, 'site.name');
+        if (brandName) {
+          document.title = brandName;
+        }
+      },
+    });
+
     // 加载处理用户信息
-    this.initLocalUserInfo();
-    this.initLocalStyleInfo();
-    this.initAppConfigInfo();
+    await this.initLocalUserInfo();
+    await this.initLocalStyleInfo();
+
+    console.log('页面已挂载成功');
   },
 
   destroyed() {
@@ -68,13 +85,6 @@ export default {
   methods: {
     // 导入vuex中的方法
     ...mapActions(['initLocalUserInfo', 'initLocalStyleInfo', 'initAppConfigInfo']),
-    // 移除开屏动画，vue实例挂载后移除加载爱心加载效果
-    removeLoading() {
-      let loadingDOM = document.getElementById('loading-id9527');
-      if (loadingDOM) {
-        document.body.removeChild(loadingDOM);
-      }
-    },
   },
 };
 </script>

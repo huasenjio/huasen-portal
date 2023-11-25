@@ -74,7 +74,14 @@ const routePaths = flatten(router.options.routes);
 // 路由前置守卫
 router.beforeEach((to, form, next) => {
   Nprogress.start();
-  document.title = to.meta.title ? to.meta.title : '花森屿你'; // 将路由中的属性赋值到title中
+
+  let loaded = state.appConfig.loaded;
+  let brandName = state.appConfig.site.name;
+  if (loaded && brandName) {
+    // 将路由中的属性赋值到title中
+    document.title = to.meta.title ? brandName + '·' + to.meta.title : 'huasen-portal';
+  }
+
   let userCode = state.user.code;
   // 判断权限
   if (!routePaths.includes(to.path)) {

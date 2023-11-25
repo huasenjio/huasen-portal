@@ -19,6 +19,7 @@ export default {
       if (user) {
         let config = { ...context.state.user.config, ...JSON.parse(user.config) };
         let records = JSON.parse(user.records);
+
         // 提交更新
         context.commit('commitAll', {
           user: {
@@ -55,19 +56,64 @@ export default {
   },
 
   // 初始化配置
-  initAppConfigInfo(context, payload) {
-    that.API.findAppConfig({}, { notify: false })
-      .then(res => {
-        context.commit('commitAll', {
-          appConfig: {
-            article: res.data.article,
+  async initAppConfigInfo(context, payload) {
+    let { callback } = { ...payload };
+    let res = await that.API.findAppConfig({}, { notify: false });
+    try {
+      let state = {
+        appConfig: {
+          loaded: true,
+          article: that.LODASH.get(res.data, 'article'),
+          site: {
+            name: that.LODASH.get(res.data, 'site.brandName') || '花森',
+            logoURL: that.LODASH.get(res.data, 'site.brandUrl') || require('@/assets/img/logo/favicon.svg'),
+            redirectURL: that.LODASH.get(res.data, 'site.redirectUrl') || 'http://huasen.cc/',
+            guidePageName: that.LODASH.get(res.data, 'site.guidePageName') || '花森小窝',
+            guidePageUrl: that.LODASH.get(res.data, 'site.guidePageUrl') || 'http://huasen.cc/',
+            footerHtml: that.LODASH.get(res.data, 'site.footerHtml') || '',
+            openLabelClassification: that.LODASH.get(res.data, 'site.openLabelClassification') || false,
+            serviceQRCodeUrl: that.LODASH.get(res.data, 'site.serviceQRCodeUrl') || require('@/assets/img/logo/weixin.png'),
           },
-          themeConfig: res.data.theme,
+        },
+        themeConfig: that.LODASH.get(res.data, 'theme'),
+      };
+
+      // 默认配置合并
+      context.commit('commitAll', state);
+
+      // 设置默认壁纸
+      let bg = that.LODASH.get(res.data, 'theme.default.bg');
+      let headerFontColor = that.LODASH.get(res.data, 'theme.default.color');
+
+      if (bg) {
+        context.commit('commitAll', {
+          user: {
+            config: {
+              bg,
+            },
+          },
         });
-      })
-      .catch(err => {
-        that.$tips('error', '初始化配置出错', 'top-right', 2000);
-      });
+      }
+
+      if (headerFontColor) {
+        context.commit('commitAll', {
+          user: {
+            config: {
+              headerFontColor,
+            },
+          },
+        });
+      }
+
+      context.commit('commitAll', state);
+
+      // 请求配置成功回调，处理document.title
+      if (callback) callback();
+
+      console.log('初始化配置成功');
+    } catch (err) {
+      that.$tips('error', '初始化配置出错', 'top-right', 2000);
+    }
   },
 
   // 保存当前用户快照

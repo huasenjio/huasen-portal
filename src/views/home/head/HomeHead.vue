@@ -44,14 +44,21 @@
           <i class="el-icon-arrow-down el-icon--right"></i>
         </span>
         <el-dropdown-menu slot="dropdown">
-          <el-dropdown-item v-for="item in journals" :key="item._id" :command="item._id">
-            {{ item.name }}
-          </el-dropdown-item>
+          <template v-if="journals.length">
+            <el-dropdown-item v-for="item in journals" :key="item._id" :command="item._id">
+              {{ item.name }}
+            </el-dropdown-item>
+          </template>
+          <template v-else>
+            <el-dropdown-item :disabled="true">
+              空空如也
+            </el-dropdown-item>
+          </template>
         </el-dropdown-menu>
       </el-dropdown>
     </section>
     <section v-if="showMenu" @click="sign" class="sign">
-      {{ signText || '花酱大人' }}
+      {{ signText || '暂无昵称' }}
     </section>
   </div>
 </template>
@@ -87,26 +94,6 @@ export default {
       takes: [],
       journals: [],
       currentJournal: {},
-      links: [
-        {
-          iconfontClass: 'iconfont icon-md-home',
-          text: '花森小窝',
-          url: 'http://huasen.cc/',
-          isArticle: false,
-        },
-        {
-          iconfontClass: 'iconfont icon-md-stats',
-          text: '更新日志',
-          url: this.$store.state.appConfig.article.course,
-          isArticle: true,
-        },
-        {
-          iconfontClass: 'iconfont icon-md-at',
-          text: '关于我们',
-          url: this.$store.state.appConfig.article.about,
-          isArticle: true,
-        },
-      ],
     };
   },
 
@@ -117,6 +104,29 @@ export default {
     },
     signText() {
       return this.user.token ? this.user.name : '注册登录';
+    },
+    links() {
+      let site = this.$store.state.appConfig.site;
+      return [
+        {
+          iconfontClass: 'iconfont icon-md-home',
+          text: site.guidePageName,
+          url: site.guidePageUrl,
+          isArticle: false,
+        },
+        {
+          iconfontClass: 'iconfont icon-md-stats',
+          text: '更新日志',
+          url: this.$store.state.appConfig.article.changelog,
+          isArticle: true,
+        },
+        {
+          iconfontClass: 'iconfont icon-md-at',
+          text: '关于我们',
+          url: this.$store.state.appConfig.article.about,
+          isArticle: true,
+        },
+      ];
     },
   },
 
@@ -146,7 +156,7 @@ export default {
         },
       ).then(res => {
         if (res.data.length !== 0) {
-          this.journals = res.data;
+          this.journals = res.data || [];
           this.handleSelectJournal(this.journals[0]._id);
         }
       });
@@ -271,8 +281,13 @@ export default {
       align-items: center;
       li {
         margin-left: 12px;
+        display: flex;
+        align-items: center;
+        span {
+          display: inline-block;
+          max-width: 86px;
+        }
         cursor: pointer;
-
         &:first-of-type {
           margin-left: 0;
         }

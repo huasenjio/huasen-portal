@@ -21,9 +21,9 @@ export default {
   // 请求是否自动携带cookie凭证
   withCredentials: true,
   // 是否全局开启mock
-  globalMock: isDev ? true : false,
+  globalMock: isDev ? true : true,
   // 是否开启加密传输
-  globalSecret: isDev ? false : true,
+  globalSecret: isDev ? false : false,
   // 全局开启请求通知
   globalNotify: true,
   // 全局错误通知

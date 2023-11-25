@@ -32,11 +32,11 @@
                   <el-input v-model="submitForm.id" placeholder="请输入邮箱"> </el-input>
                 </el-form-item>
                 <el-form-item prop="password">
-                  <el-input type="password" v-model="submitForm.password" :show-password="true" autocomplete="off" placeholder="请输入密码"></el-input>
+                  <el-input type="password" v-model="submitForm.password" :show-password="true" autocomplete="off" placeholder="请输入密码：数字｜字母｜下划线"></el-input>
                 </el-form-item>
               </el-form>
               <div class="btn" @click="login">
-                登 陆
+                登 录
               </div>
             </section>
           </span>
@@ -48,7 +48,7 @@
                   <el-input v-model="submitForm.id" placeholder="请输入邮箱"> </el-input>
                 </el-form-item>
                 <el-form-item prop="password">
-                  <el-input type="password" v-model="submitForm.password" :show-password="true" autocomplete="off" placeholder="请输入密码"></el-input>
+                  <el-input type="password" v-model="submitForm.password" :show-password="true" autocomplete="off" placeholder="请输入密码：数字｜字母｜下划线"></el-input>
                 </el-form-item>
                 <el-form-item prop="mailCode">
                   <div class="mail-code-group">
@@ -130,9 +130,14 @@ export default {
             return;
           }
           // 发送邮箱验证码
-          this.API.getMailCode({
-            mail: this.submitForm.id,
-          });
+          this.API.getMailCode(
+            {
+              mail: this.submitForm.id,
+            },
+            {
+              secret: true,
+            },
+          );
           // 无论是否发送成功均打开定时器
           this.timer = setInterval(() => {
             if (this.count >= 0) {
@@ -161,6 +166,7 @@ export default {
           };
           this.API.login(params, {
             notify: true,
+            secret: true,
           }).then(res => {
             // 用户数据本地持久化
             this.STORAGE.setItem(this.CONSTANT.localUser, res.data);
@@ -181,12 +187,14 @@ export default {
           };
           if (this.activeIndex == 1) {
             // 注册
-            this.API.register(params).then(res => {
+            this.API.register(params, {
+              secret: true,
+            }).then(res => {
               this.activeIndex = 0;
             });
           } else {
             // 修改密码
-            this.API.updatePassword(params).then(res => {
+            this.API.updatePassword(params, { secret: true }).then(res => {
               this.activeIndex = 0;
             });
           }

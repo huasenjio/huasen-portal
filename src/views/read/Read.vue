@@ -8,7 +8,7 @@
 <template>
   <div class="read">
     <main>
-      <header>
+      <header class="mb-px-40">
         <div class="title-group flex my-px-10">
           <div class="title text-3xl flex-1 text">
             {{ article.title }}
@@ -18,17 +18,17 @@
             <i class="iconfont icon-tuichu text-xl"></i>
           </div>
         </div>
-        <div class="tag-group text">
+        <div class="info-group">
+          <div class="text">{{ `${appConfig.site.name}原创 · 最后修改于${time}` }}</div>
+        </div>
+        <div class="tag-group text border border-gray-300 border-dashed">
           <div v-for="item in tags" :key="item" v-randomColor class="text-white inline-block text-xs px-px-8 py-px-2 first:mx-px-0 mx-px-4 rounded-full">
             {{ item }}
           </div>
         </div>
-        <div class="info-group">
-          <div class="text">{{ `花森原创 · 最后修改于${time}` }}</div>
-        </div>
       </header>
       <div class="content">
-        <HMarkdown :value="article.content"></HMarkdown>
+        <HMarkdown :value="article.content || content"></HMarkdown>
         <footer class="footer-group">
           <div class="text">版权说明：MIT开源协议</div>
           <div class="text">免责声明：文章仅供学习交流 禁止用于商业用途</div>
@@ -38,10 +38,12 @@
   </div>
 </template>
 <script>
+import { mapState } from 'vuex';
 export default {
   name: 'Read',
   data() {
     return {
+      loading: true,
       article: {
         title: '文章标题',
         time: '1979-01-01',
@@ -58,8 +60,9 @@ export default {
     this.showSidebar();
   },
   computed: {
+    ...mapState(['appConfig']),
     tags() {
-      return this.article.tag ? this.article.tag.split('/') : [];
+      return this.article.tag ? this.article.tag.split('/') : ['无标签'];
     },
     time() {
       if (this.article.time) {
@@ -79,11 +82,23 @@ export default {
       }
     },
     queryArticleById(_id) {
-      this.API.getArtcileById({ _id })
+      this.API.getArtcileById(
+        { _id },
+        {
+          notify: false,
+        },
+      )
         .then(res => {
-          let article = res.data[0];
-          if (article) {
-            this.article = article;
+          if (!res.data[0]) {
+            this.$tips('error', '文章找不到了', 'top-right', 1200, () => {
+              this.$router.push('/article');
+            });
+          } else {
+            let article = res.data[0];
+            if (article) {
+              this.article = article;
+              this.loading = false;
+            }
           }
         })
         .catch(err => {
@@ -135,7 +150,10 @@ export default {
       }
       .tag-group {
         width: 100%;
-        height: 22px;
+        padding: 12px 4px;
+        border-radius: 4px;
+        box-sizing: border-box;
+        background-color: var(--gray-100);
         margin: 10px 0;
       }
       .info-group {
