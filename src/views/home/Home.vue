@@ -58,6 +58,17 @@ export default {
       return this.categorySites.length === 0 ? true : false;
     },
   },
+  // 避免路由缓存切换时，顶部栏背景异常问题，手动触发事件
+  watch: {
+    '$route.path': {
+      handler(nV, oV) {
+        if (nV === '/home') {
+          let event = new Event('scroll', { bubbles: true, cancelable: false });
+          this.$refs.homeContent.dispatchEvent(event);
+        }
+      },
+    },
+  },
   mounted() {
     this.initScrollEvent();
     this.initEventBus();
@@ -80,13 +91,8 @@ export default {
 
     handleHomeSearchFucos(event) {
       Bus.pubEv(BusType.HOME_FUCOS, event.key);
-
-      setTimeout(() => {
-        Bus.pubEv(BusType.HOME_SCROLL_TO, 0, true);
-      }, 200);
     },
 
-    // 按下tab，切换搜索引擎
     initScrollEvent() {
       let debounce = this.TOOL.debounce(event => {
         let temp = {
@@ -111,7 +117,7 @@ export default {
           temp.clear = true;
         }
         this.headBgConfig = temp;
-      }, 20);
+      }, 10);
 
       this.$refs.homeContent.addEventListener('scroll', debounce);
       this.$once('hook:beforeDestory', () => {
@@ -125,7 +131,7 @@ export default {
         this.homeContentScrollTo(y);
       });
 
-      // 初始化聚焦事件总线
+      // 初始化聚焦事件总线 slash
       Bus.subEv(BusType.HOME_CREATE_KEYUP_SLASH, () => {
         document.addEventListener('keyup', this.handleHomeSearchFucos);
       });

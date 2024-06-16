@@ -34,9 +34,7 @@ export default {
         });
       }
     } catch (err) {
-      that.$tips('error', '初始化失败', 'top-right', 2000, () => {
-        that.STORAGE.clear();
-      });
+      that.STORAGE.clear('数据异常，重置网站所有数据和功能，修复一切疑难杂症，您继续吗？');
     }
   },
 
@@ -67,9 +65,9 @@ export default {
           site: {
             name: that.LODASH.get(res.data, 'site.brandName') || '花森',
             logoURL: that.LODASH.get(res.data, 'site.brandUrl') || require('@/assets/img/logo/favicon.svg'),
-            redirectURL: that.LODASH.get(res.data, 'site.redirectUrl') || 'http://huasen.cc/',
+            redirectURL: that.LODASH.get(res.data, 'site.redirectUrl') || 'http://huasenjio.top/',
             guidePageName: that.LODASH.get(res.data, 'site.guidePageName') || '花森小窝',
-            guidePageUrl: that.LODASH.get(res.data, 'site.guidePageUrl') || 'http://huasen.cc/',
+            guidePageUrl: that.LODASH.get(res.data, 'site.guidePageUrl') || 'http://huasenjio.top/',
             footerHtml: that.LODASH.get(res.data, 'site.footerHtml') || '',
             openLabelClassification: that.LODASH.get(res.data, 'site.openLabelClassification') || false,
             serviceQRCodeUrl: that.LODASH.get(res.data, 'site.serviceQRCodeUrl') || require('@/assets/img/logo/weixin.png'),
@@ -120,10 +118,10 @@ export default {
   snapshoot(context, payload) {
     let { user } = context.state;
 
-    // 过滤无用的theme配置
     Object.keys(user.config.theme).map(key => {
       let node = document.getElementById(key);
       if (!node) {
+        // 过滤无用的theme配置
         delete user.config.theme[key];
       }
     });

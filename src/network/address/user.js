@@ -13,7 +13,7 @@ const login = post('/user/login');
 const register = post('/user/register');
 const updatePassword = post('/user/updatePassword');
 const backup = post('/user/backup');
-const consistentFromCloud = post('/user/consistentFromCloud');
+const recovery = post('/user/recovery');
 const findAppConfig = post(
   '/user/findAppConfig',
   {
@@ -57,6 +57,7 @@ const findAppConfig = post(
       changelog: '648c79d1cdf0f0076b134525',
       about: '648c79d1cdf0f0076b134525',
       help: '648c79d1cdf0f0076b134525',
+      notice: '63665c364c82f5001e7bf85a'
     },
   },
   true,
@@ -67,6 +68,6 @@ export default {
   register,
   updatePassword,
   backup,
-  consistentFromCloud,
+  recovery,
   findAppConfig,
 };

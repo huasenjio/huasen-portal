@@ -8,7 +8,7 @@
 <template>
   <div class="hs-wrap">
     <div class="wrap-body">
-      <WrapLeft v-show="showWrapLeft && !simpleMode"></WrapLeft>
+      <WrapLeft v-show="user.config.showNavbar && !simpleMode"></WrapLeft>
       <WrapRight v-show="!simpleMode"></WrapRight>
       <WrapSidebar v-show="showWrapSidebar && !simpleMode"></WrapSidebar>
       <WrapSign></WrapSign>
@@ -16,6 +16,7 @@
       <WrapSimple v-show="simpleMode"></WrapSimple>
     </div>
     <div v-if="showWrapFooter" v-html="appConfig.site.footerHtml" class="wrap-footer"></div>
+    <WrapNotice v-if="appConfig.loaded"></WrapNotice>
   </div>
 </template>
 <script>
@@ -29,26 +30,32 @@ import WrapSidebar from './sidebar/WrapSidebar.vue';
 import WrapSign from './sign/WrapSign.vue';
 import WrapPerson from './person/WrapPerson.vue';
 import WrapSimple from './simple/WrapSimple.vue';
+import WrapNotice from './notice/WrapNotice.vue';
 
 export default {
   name: 'HsWrap',
 
-  components: { WrapLeft, WrapRight, WrapSidebar, WrapSign, WrapPerson, WrapSimple },
+  components: { WrapLeft, WrapRight, WrapSidebar, WrapSign, WrapPerson, WrapSimple, WrapNotice },
 
   data() {
     return {
       navs,
+      showNotice: true,
     };
   },
 
   computed: {
-    ...mapState(['showWrapLeft', 'showWrapConnect', 'showWrapSidebar', 'user', 'appConfig']),
+    ...mapState(['showWrapConnect', 'showWrapSidebar', 'user', 'appConfig']),
     simpleMode() {
       return this.user.config.simpleMode;
     },
     showWrapFooter() {
       return this.appConfig.site.footerHtml;
     },
+  },
+
+  methods: {
+    handleNotice() {},
   },
 };
 </script>

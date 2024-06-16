@@ -37,6 +37,7 @@ import OptionGroup from 'element-ui/lib/option-group';
 import Tooltip from 'element-ui/lib/tooltip';
 import Notification from 'element-ui/lib/notification';
 import Message from 'element-ui/lib/message';
+import MessageBox from 'element-ui/lib/message-box';
 import Form from 'element-ui/lib/form';
 import FormItem from 'element-ui/lib/form-item';
 import Row from 'element-ui/lib/row';
@@ -51,6 +52,7 @@ import Switch from 'element-ui/lib/switch';
 import Dialog from 'element-ui/lib/dialog';
 import Empty from 'element-ui/lib/empty';
 import Popover from 'element-ui/lib/popover';
+import Scrollbar from 'element-ui/lib/scrollbar';
 import { InfiniteScroll } from 'element-ui';
 
 Vue.use(Button);
@@ -84,10 +86,12 @@ Vue.use(Empty);
 Vue.use(Popover);
 Vue.use(Loading.directive);
 Vue.use(InfiniteScroll);
+Vue.use(Scrollbar);
 
 Vue.prototype.$loading = Loading.service;
 Vue.prototype.$notify = Notification;
 Vue.prototype.$message = Message;
+Vue.prototype.$alert = MessageBox.alert;
 
 Vue.prototype.$startLoading = function(text) {
   HLoadingCount++;
